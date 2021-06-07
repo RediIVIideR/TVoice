@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TVoice</title>
+  <link rel="shortcut icon" type="image/jpg" href="icon.png">
+   <script type="text/javascript" src="/eel.js"></script>
+	<style type="text/css">
+		body, html {
+  height: 100%;
+  overflow-y: hidden;
+}
+@keyframes example {
+  0%   {color: black; }
+  100% {color: white; }
+}
+
+h1{
+  font-family: 'Open Sans';
+  font-size: 50px;
+  animation-name: example;
+  animation-duration: 1.5s;
+}
+
+p{
+  font-family: 'Open Sans';
+  animation-name: example;
+  animation-duration: 1.5s;
+
+}
+h2{
+  font-family: 'Open Sans';
+  font-size: 30px;
+  animation-name: example;
+  animation-duration: 1.5s;
+}
+* {
+  box-sizing: border-box;
+}
+
+.bg-image {
+  /* The image used */
+  background-image: url("1.jpg");
+
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+@keyframes trans{
+  0% {top: 0%;}
+  100% {top:50%; }
+}
+/* Position text in the middle of the page/image */
+.bg-text {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
+  padding: 20px;
+  text-align: center;
+  animation-name: trans;
+  animation-duration: 2s;
+}
+.btn{
+
+background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  border: 3px solid #f1f1f1;
+  font-size: 20px;
+}
+.btn:hover{
+  border-radius: 8px;
+  font-size: 25px;
+}
+	</style>
+</head>
+<body>
+<div class="bg-image"></div>
+
+<div class="bg-text" id="bg-text">
+  <h1>TVoice</h1>
+  <h2>Welcome to the best TTS tool!</h2>
+  <p>With this incredible tool you are able to transform your text to speech!</p>
+  <button class="btn" id="b">Get started!</button>
+</div>
+
+<script type="text/javascript">
+	let button = document.getElementById('b');
+	
+	let div = document.getElementById('bg-text');
+	button.onclick = function redir(){
+		div.innerHTML = `
+  <h1>TVoice</h1>
+  <h2>Please, input your text</h2>
+  <textarea id='n'></textarea>
+  <p id='s'> </p>
+  <div>
+  <button class="btn" id="sat">Say!</button>
+  <button class="btn" id="t">Save!</button>
+  </div>
+`;
+let b  = document.getElementById('sat');
+b.onclick = function say(){
+  let p = document.getElementById('s');
+ p.innerHTML = ''
+  let text = document.getElementById('n').value;
+  eel.say(text)();
+};
+
+let but = document.getElementById('t');
+but.onclick = function d(){
+  text = document.getElementById('n').value;
+ eel.tts(text)();
+ let p = document.getElementById('s');
+ p.innerHTML = 'Successfully generated!'
+}	
+	};
+
+
+</script>
+</body>
+</html>
